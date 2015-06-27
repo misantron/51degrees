@@ -1,11 +1,10 @@
 #51Degrees for golang
-51Degrees UserAgent½âÎö¿âµÄ¹Ù·½cÓïÑÔ°ü×°°æ
-Ö»ÊµÏÖÁËÎÒĞèÒªµÄ¹¦ÄÜ£¬ÊÇÏß³Ì°²È«µÄ
+51Degrees UserAgentè§£æåº“çš„å®˜æ–¹cè¯­è¨€åŒ…è£…ç‰ˆ,åªå®ç°äº†æˆ‘éœ€è¦çš„åŠŸèƒ½ï¼Œæ˜¯çº¿ç¨‹å®‰å…¨çš„
 
-### °²×°
+### å®‰è£…
 `go get github.com/hdczsf/51degrees`
 
-### Àı×Ó
+### ä¾‹å­
 ```go
 package main
 
