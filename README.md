@@ -2,7 +2,7 @@
 51Degrees UserAgent解析库的官方c语言包装版,只实现了我需要的功能，是线程安全的
 
 ### 安装
-`go get github.com/hdczsf/51degrees`
+`go get github.com/hdczsf/51degrees.go`
 
 ### 例子
 ```go
@@ -10,7 +10,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/hdczsf/51degrees"
+	"github.com/hdczsf/51degrees.go"
 )
 
 func main() {
