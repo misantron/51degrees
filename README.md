@@ -1,10 +1,10 @@
 #51Degrees for golang
-51Degrees UserAgent解析库的官方c语言包装版,只实现了我需要的功能，是线程安全的
+51Degrees UserAgent
 
-### 安装
+### Installation
 `go get github.com/hdczsf/51degrees.go`
 
-### 例子
+### Example
 ```go
 package main
 
