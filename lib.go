@@ -2,6 +2,7 @@ package fiftyonedegrees
 
 /*
 #cgo CFLAGS: -I . -Wimplicit-function-declaration
+#cgo LDFLAGS: -lm -rt
 #include "51Degrees.h"
 */
 import "C"
