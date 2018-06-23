@@ -1,0 +1,19 @@
+sudo: false
+
+language: go
+
+go:
+  - 1.9.x
+  - 1.10.x
+  - master
+
+git:
+  depth: 1
+
+intall: true
+
+notifications:
+  email: false
+
+script:
+  - go test -v -race ./...
