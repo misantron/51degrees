@@ -4,7 +4,7 @@ import (
 	"fmt"
 )
 
-var dataFilePath = `https://github.com/51Degrees/Device-Detection/blob/master/data/51Degrees-LiteV3.2.dat`
+var dataFilePath = `51Degrees-LiteV3.2.dat`
 
 func mustLoadProviderData(poolSize int, cacheSize int) (*FiftyoneDegreesProvider, error) {
 	properties := "DeviceType, IsMobile, IsSmartPhone, IsTablet, IsTv, HardwareName, HardwareVendor, HardwareModel, BrowserName, BrowserVersion, PlatformName, PlatformVersion, ScreenPixelsWidth, ScreenPixelsHeight"
