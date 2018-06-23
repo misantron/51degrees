@@ -4,9 +4,11 @@ import (
 	"fmt"
 )
 
+var dataFilePath = `https://github.com/51Degrees/Device-Detection/blob/master/data/51Degrees-LiteV3.2.dat`
+
 func mustLoadProviderData(poolSize int, cacheSize int) (*FiftyoneDegreesProvider, error) {
 	properties := "DeviceType, IsMobile, IsSmartPhone, IsTablet, IsTv, HardwareName, HardwareVendor, HardwareModel, BrowserName, BrowserVersion, PlatformName, PlatformVersion, ScreenPixelsWidth, ScreenPixelsHeight"
-	item, err := NewFiftyoneDegreesProvider("51Degrees-LiteV3.2.dat", properties, poolSize, cacheSize)
+	item, err := NewFiftyoneDegreesProvider(dataFilePath, properties, poolSize, cacheSize)
 	if err != nil {
 		fmt.Println("err=", err)
 		return nil, err
@@ -17,7 +19,7 @@ func mustLoadProviderData(poolSize int, cacheSize int) (*FiftyoneDegreesProvider
 
 func mustLoadDataSet() (*FiftyoneDegreesDataSet, error) {
 	properties := "DeviceType, IsMobile, IsSmartPhone, IsTablet, IsTv, HardwareName, HardwareVendor, HardwareModel, BrowserName, BrowserVersion, PlatformName, PlatformVersion, ScreenPixelsWidth, ScreenPixelsHeight"
-	item, err := NewFiftyoneDegreesDataSet("51Degrees-LiteV3.2.dat", properties)
+	item, err := NewFiftyoneDegreesDataSet(dataFilePath, properties)
 	if err != nil {
 		fmt.Println("err=", err)
 		return nil, err

@@ -7,7 +7,7 @@ import (
 func TestProviderParse(t *testing.T) {
 	userAgentDB, err := mustLoadProviderData(2, 1000)
 	if err != nil {
-		t.Fatal("could not load DB: %s", err)
+		t.Fatalf("could not load DB: %s", err)
 	}
 	testUA := "Mozilla/5.0 (Windows NT 6.1; WOW64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/43.0.2357.124 Safari/537.36"
 	userAgentDB.Parse(testUA)
@@ -22,7 +22,7 @@ func TestProviderParse(t *testing.T) {
 func BenchmarkProviderParse(b *testing.B) {
 	userAgentDB, err := mustLoadProviderData(2, 1000)
 	if err != nil {
-		b.Fatal("could not load DB: %s", err)
+		b.Fatalf("could not load DB: %s", err)
 	}
 
 	defer userAgentDB.Close()
@@ -38,7 +38,7 @@ func BenchmarkProviderParse(b *testing.B) {
 func BenchmarkDataSetParse(b *testing.B) {
 	userAgentDB, err := mustLoadDataSet()
 	if err != nil {
-		b.Fatal("could not load DB: %s", err)
+		b.Fatalf("could not load DB: %s", err)
 	}
 
 	defer userAgentDB.Close()
