@@ -15,5 +15,8 @@ intall: true
 notifications:
   email: false
 
+before_script:
+  - wget https://github.com/51Degrees/Device-Detection/blob/master/data/51Degrees-LiteV3.2.dat
+
 script:
   - go test -v -race ./...
