@@ -8,10 +8,6 @@ os:
   - linux
   - osx
 
-cache:
-  directories:
-    - "${HOME}/bin"
-
 git:
   depth: 1
 
@@ -19,10 +15,6 @@ intall: true
 
 notifications:
   email: false
-
-before_script:
-  - curl -sSL "https://github.com/51Degrees/Device-Detection/blob/master/data/51Degrees-LiteV3.2.dat" -o "${HOME}/bin/51Degrees-LiteV3.2.dat";
-  - cp "${HOME}/bin/51Degrees-LiteV3.2.dat" "${TRAVIS_BUILD_DIR}/51Degrees-LiteV3.2.dat"
 
 script:
   - go test -v -race ./...
