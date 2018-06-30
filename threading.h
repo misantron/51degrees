@@ -33,7 +33,7 @@
 * MUTEX AND THREADING MACROS
 */
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #include <windows.h>
 #else
 #include <pthread.h>
@@ -45,7 +45,7 @@
 * Mutex used to synchronise access to data structures that could be used
 * in parallel in a multi threaded environment.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_MUTEX HANDLE
 #else
 typedef struct fiftyoneDegrees_mutex_t {
@@ -64,7 +64,7 @@ int fiftyoneDegreesMutexValid(const fiftyoneDegreesMutex *mutex);
 * A signal used to limit the number of worksets that can be created by
 * the pool.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_SIGNAL HANDLE
 #else
 typedef struct fiftyoneDegrees_signal_t {
@@ -84,7 +84,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
  * A thread created with the CREATE_THREAD macro.
  */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_THREAD HANDLE
 #else
 #define FIFTYONEDEGREES_THREAD pthread_t
@@ -94,7 +94,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 * Creates a new signal that can be used to wait for
 * other operations to complete before continuing.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_SIGNAL_CREATE(s) s = (FIFTYONEDEGREES_SIGNAL)CreateEvent(NULL, FALSE, TRUE, NULL)
 #else
 #define FIFTYONEDEGREES_SIGNAL_CREATE(s) fiftyoneDegreesSignalCreate((fiftyoneDegreesSignal*)&s)
@@ -103,7 +103,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
 * Frees the handle provided to the macro.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_SIGNAL_CLOSE(s) if (s != NULL) { CloseHandle(s); }
 #else
 #define FIFTYONEDEGREES_SIGNAL_CLOSE(s) fiftyoneDegreesSignalClose((fiftyoneDegreesSignal*)&s)
@@ -112,7 +112,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
 * Signals a thread waiting for the signal to proceed.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_SIGNAL_SET(s) SetEvent(s)
 #else
 #define FIFTYONEDEGREES_SIGNAL_SET(s) fiftyoneDegreesSignalSet((fiftyoneDegreesSignal*)s)
@@ -121,7 +121,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
 * Waits for the signal to become set by another thread.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_SIGNAL_WAIT(s) WaitForSingleObject(*s, FIFTYONEDEGREES_SIGNAL_TIMEOUT_MS)
 #else
 #define FIFTYONEDEGREES_SIGNAL_WAIT(s) fiftyoneDegreesSignalWait((fiftyoneDegreesSignal*)s)
@@ -130,7 +130,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
  * Returns true if the signal is valid.
  */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_SIGNAL_VALID(s) (*s != NULL)
 #else
 #define FIFTYONEDEGREES_SIGNAL_VALID(s) fiftyoneDegreesSignalValid((fiftyoneDegreesSignal*)s)
@@ -139,7 +139,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
 * Creates a new mutex at the pointer provided.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_MUTEX_CREATE(m) m = (FIFTYONEDEGREES_MUTEX)CreateMutex(NULL,FALSE,NULL)
 #else
 #define FIFTYONEDEGREES_MUTEX_CREATE(m) fiftyoneDegreesMutexCreate(&m)
@@ -148,7 +148,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
 * Frees the mutex at the pointer provided.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_MUTEX_CLOSE(m) if (m != NULL) { CloseHandle(m); }
 #else
 #define FIFTYONEDEGREES_MUTEX_CLOSE(m) fiftyoneDegreesMutexClose(&m)
@@ -157,7 +157,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
 * Locks the mutex at the pointer provided.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_MUTEX_LOCK(m) WaitForSingleObject(*m, INFINITE)
 #else
 #define FIFTYONEDEGREES_MUTEX_LOCK(m) fiftyoneDegreesMutexLock(m)
@@ -166,7 +166,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
 * Unlocks the mutex at the pointer provided.
 */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_MUTEX_UNLOCK(m) ReleaseMutex(*m)
 #else
 #define FIFTYONEDEGREES_MUTEX_UNLOCK(m) fiftyoneDegreesMutexUnlock(m)
@@ -175,7 +175,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
  * Returns true if the signal is valid.
  */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_MUTEX_VALID(m) (*m != NULL)
 #else
 #define FIFTYONEDEGREES_MUTEX_VALID(m) fiftyoneDegreesMutexValid(m)
@@ -187,7 +187,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
  * m - the method to call when the thread runs
  * s - pointer to the state data to pass to the method
  */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_THREAD_CREATE(t, m, s) t = (FIFTYONEDEGREES_THREAD)CreateThread(NULL, 0, m, s, 0, NULL)
 #else
 #define FIFTYONEDEGREES_THREAD_CREATE(t, m, s) pthread_create(&t, NULL, m, s)
@@ -198,7 +198,7 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
  * indefinitely for the operation to complete.
  * t - pointer to a previously created thread
  */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_THREAD_JOIN(t) WaitForSingleObject(t, INFINITE)
 #else
 #define FIFTYONEDEGREES_THREAD_JOIN(t) pthread_join(t, NULL)
@@ -207,13 +207,13 @@ int fiftyoneDegreesSignalValid(fiftyoneDegreesSignal *signal);
 /**
  * Closes the thread passed to the macro.
  */
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_THREAD_CLOSE(t) CloseHandle(t)
 #else
 #define FIFTYONEDEGREES_THREAD_CLOSE(t) pthread_exit(NULL)
 #endif
 
-#ifdef _MSC_VER
+#ifdef _WIN32
 #define FIFTYONEDEGREES_THREAD_EXIT ExitThread(0)
 #else
 #define FIFTYONEDEGREES_THREAD_EXIT pthread_exit(NULL)

@@ -20,7 +20,7 @@
 ********************************************************************** */
 
 #ifndef FIFTYONEDEGREES_NO_THREADING
-#ifndef _MSC_VER
+#ifndef _WIN32
 
 #include <pthread.h>
 #include "threading.h"
@@ -136,7 +136,13 @@ void fiftyoneDegreesSignalWait(fiftyoneDegreesSignal *signal) {
 	struct timespec timeout;
 	if (signal->destroyed == 0) {
 		if (pthread_mutex_lock((pthread_mutex_t *__restrict)&signal->mutex.mutex) == 0) {
-#ifdef __APPLE__
+#ifdef _WIN32
+            __int64 wintime;
+            GetSystemTimeAsFileTime((FILETIME*)&wintime);
+            wintime -=116444736000000000i64;
+            timeout.tv_sec = wintime / 10000000i64;
+            timeout.tv_nsec = wintime % 10000000i64 *100;
+#elif __APPLE__
 			struct timeval tv;
 			gettimeofday(&tv, NULL);
 			timeout.tv_sec = tv.tv_sec;

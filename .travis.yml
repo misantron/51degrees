@@ -2,8 +2,11 @@ language: go
 
 go:
   - 1.9.x
-  - 1.10.x
-  - master
+
+os:
+  - linux
+  - osx
+  - windows
 
 git:
   depth: 1
@@ -12,9 +15,6 @@ intall: true
 
 notifications:
   email: false
-
-before_script:
-  - sudo wget https://github.com/51Degrees/Device-Detection/blob/master/data/51Degrees-LiteV3.2.dat
 
 script:
   - go test -v -race ./...
